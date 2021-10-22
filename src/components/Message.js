@@ -1,4 +1,11 @@
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en.json'
+TimeAgo.addDefaultLocale(en)
+
+
 const Message = ({activeMessage}) => {
+    const timeAgo = new TimeAgo('en-US')
+
     return (
         <div className="flex flex-col p-16 w-full">
             <div className="flex justify-between items-center">
@@ -11,7 +18,7 @@ const Message = ({activeMessage}) => {
                         <p className="text-white text-xl">To: {activeMessage.recipient}</p>
                     </div>
                 </div>
-                <div className="text-white  text-opacity-75">{activeMessage.date.slice(0,10)}</div>
+                <div className="text-white  text-opacity-75">{timeAgo.format(new Date(activeMessage.date))}</div>
             </div>
 
             {/* Message */}
